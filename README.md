@@ -154,3 +154,7 @@ Portanto, para calcular as métricas do relatório, siga o passo-a-passo:
 ### Bônus
 * Acrescente uma linha no relatório com o desempenho da carteira inteira;
 * Crie um parâmetro extra no script para que o usuário possa informar em qual formato ele deseja gerar o relatório (CSV, Excel ou Parquet);
+
+### Instruções
+
+Faça a resolução do exercício em um repositório público do GitHub. Mantenha a organização dos commits e crie um README.md explicando o que foi feito e como executar o script. A organização do código e linha de raciocínio fazem parte da avaliação. Boa sorte!
