@@ -61,7 +61,7 @@ Seu desafio, portanto, é criar um script que forneça o desempenho dessa cartei
 
 ### Câmbio
 
-O BACEN (Banco Central do Brasil) mantém uma cotação histórica oficial de moedas, denominado PTAX,. Ela é disponibilizada através de um web service, que pode ser consultado pela API abaixo:
+O BACEN (Banco Central do Brasil) mantém uma cotação histórica oficial de moedas, denominado PTAX. Ela é disponibilizada através de um web service, que pode ser consultado pela API abaixo:
 
 `https://ptax.bcb.gov.br/ptax_internet/consultaBoletim.do?method=gerarCSVFechamentoMoedaNoPeriodo&ChkMoeda=código&DATAINI=DD/MM/YYYY&DATAFIM=DD/MM/YYYY`
 
@@ -75,19 +75,35 @@ Os códigos para as moedas da carteira são:
 
 Onde consta `DD/MM/YYYY` refere-se ao formato de data que deve ser utilizado nos parâmetros.
 
-O retorno da requisição é um CSV com algumas colunas, das quais serão utilizadas a Coluna 1 (data de cotação), Coluna 5 (taxa de compra) e Coluna 7 (paridade de compra). Elas permitem fazer a conversão das moedas através das fórmulas abaixo:
+O retorno da requisição é um CSV com algumas colunas, das quais serão utilizadas a Coluna 0 (data de cotação), Coluna 4 (taxa de compra) e Coluna 6 (paridade de compra). Elas permitem fazer a conversão das moedas através das fórmulas abaixo:
 
-`Montante em Dólar = Montante na Moeda Original / Paridade de Compra`
-`Montante em Real = Montante na Moeda Original * Taxa de Compra`
+$$
+\text{Montante em Dólar} = \frac{\text{Montante na Moeda Original}}{\text{Paridade de Compra}}
+$$
+
+$$
+\text{Montante em Real} = \text{Montante na Moeda Original} \times \text{Taxa de Compra}
+$$
+
 
 ### Retorno
 
 Um título pré-fixado é um investimento em que se sabe de antemão qual será o retorno. No caso do portfólio apresentado, o montante investido rende, anualmente, a taxa informada na coluna "Retorno". Por exemplo, se você investiu R$ 100,00 em um ativo que rende 4% a.a., após um ano de investimento, seu montante será de R$ 104,00. Porém, no segundo ano, o rendimento dele será de R$ 108,16, já que os juros aqui são compostos, o que significa que a taxa de 4% no segundo ano é aplicada sobre os R$ 104,00 e não mais sobre o investimento inicial de R$ 100,00.
 
-O retorno total do seu ativo, ao longo dos anos, pode ser demonstrado pela fórmula dos Juros Compostos:
+O retorno total do ativo, ao longo dos anos, pode ser demonstrado pela fórmula dos Juros Compostos:
 
-`M = C.(1 + i)**n`, sendo M o valor final, C o capital investido, i a taxa (sempre em base decimal, por exemplo, 4% = 0,04) e n o número de períodos (no caso, número de anos).
+$$
+M = C \cdot (1 + i)^{n}
+$$
 
+$$
+\begin{aligned}
+M & : \text{ valor final} \\
+C & : \text{ capital investido} \\
+i & : \text{ taxa em base decimal (ex.: } 4\% = 0{,}04 \text{)} \\
+n & : \text{ número de períodos (anos)} \\
+\end{aligned}
+$$
 ### Script
 
 Você deve criar um script Python no qual um ano deve ser informado na linha de comando (`python analise.py 2025`) para que seja criado um relatório em Excel com o desempenho da carteira, no seguinte formato:
@@ -157,4 +173,10 @@ Portanto, para calcular as métricas do relatório, siga o passo-a-passo:
 
 ### Instruções
 
-Faça a resolução do exercício em um repositório público do GitHub. Mantenha a organização dos commits e crie um README.md explicando o que foi feito e como executar o script. A organização do código e linha de raciocínio fazem parte da avaliação. Boa sorte!
+* Faça a resolução do teste em um repositório público do GitHub.
+* Mantenha a organização dos commits e crie um README.md explicando o que foi feito e como executar o script.
+* A organização do código e linha de raciocínio fazem parte da avaliação.
+* Utilize o pandas para armazenar o câmbio, fazer os cálculos e gerar o Excel final.
+* Sinta-se à vontade para fazer perguntas sobre finanças.
+
+Boa sorte!
